@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:user_manage_app/core/models/user_model.dart';
 import 'package:user_manage_app/core/services/api_services.dart';
 
-class Notifier extends ChangeNotifier {
+class UsersProvider extends ChangeNotifier {
   List<UserModel> _users = []; // storig all users in app
   List<UserModel> _filteredUsers = []; // storing only search users
   bool _isLoading = false;
 
-  List<UserModel> get user => _filteredUsers;
+  List<UserModel> get users => _filteredUsers;
   bool get isLoading => _isLoading;
 
 // to load user from api
