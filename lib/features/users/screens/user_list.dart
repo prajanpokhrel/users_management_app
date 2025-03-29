@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:switcher_button/switcher_button.dart';
 import 'package:user_manage_app/features/users/provider/users_provider.dart';
 import 'package:user_manage_app/features/users/screens/user_cards.dart';
 import 'package:user_manage_app/features/users/screens/user_form.dart';
@@ -22,7 +24,20 @@ class _UserListState extends State<UserList> {
 
   @override
   Widget build(BuildContext context) {
+    final isNepali = context.locale.languageCode == 'ne';
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.blueGrey,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => UserFormScreen(),
+            ),
+          );
+        },
+        child: Icon(Icons.add),
+      ),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(120),
         child: AppBar(
@@ -34,19 +49,37 @@ class _UserListState extends State<UserList> {
             ),
           ),
           actions: [
-            IconButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => UserFormScreen(),
+            Padding(
+              padding: EdgeInsets.only(right: 30, top: 10),
+              child: Row(
+                children: [
+                  Text(
+                    "EN",
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.w500),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: SwitcherButton(
+                      onColor: Colors.white,
+                      offColor: Colors.grey,
+                      size: 40,
+                      value: isNepali,
+                      onChange: (value) {
+                        final newLocale =
+                            value ? Locale('ne', 'NP') : Locale('en', 'US');
+                        EasyLocalization.of(context)?.setLocale(newLocale);
+                      },
                     ),
-                  );
-                },
-                icon: Icon(
-                  Icons.add,
-                  color: Colors.white,
-                ))
+                  ),
+                  Text(
+                    "NP",
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.w500),
+                  ),
+                ],
+              ),
+            ),
           ],
           bottom: PreferredSize(
             preferredSize: Size.fromHeight(60),
@@ -61,7 +94,7 @@ class _UserListState extends State<UserList> {
                       UserListProvider.searchUser(value);
                     },
                     decoration: InputDecoration(
-                      hintText: 'Search',
+                      hintText: 'search'.tr(),
                       hintStyle: TextStyle(color: Colors.white54),
                       filled: true,
                       fillColor: Color.fromARGB(213, 12, 12, 12),

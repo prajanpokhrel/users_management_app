@@ -7,7 +7,7 @@ import 'package:user_manage_app/features/users/screens/user_form.dart';
 class UserProfile extends StatelessWidget {
   final UserModel user;
 
-  const UserProfile({Key? key, required this.user}) : super(key: key);
+  const UserProfile({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {

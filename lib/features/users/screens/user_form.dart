@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -7,7 +8,7 @@ import 'package:user_manage_app/features/users/provider/users_provider.dart';
 class UserFormScreen extends StatefulWidget {
   final UserModel? user;
 
-  const UserFormScreen({Key? key, this.user}) : super(key: key);
+  const UserFormScreen({super.key, this.user});
 
   @override
   _UserFormScreenState createState() => _UserFormScreenState();
@@ -83,10 +84,9 @@ class _UserFormScreenState extends State<UserFormScreen> {
                           color: const Color.fromARGB(255, 87, 86, 86)),
                       borderRadius: BorderRadius.circular(14),
                     ),
-                    hintText: "Enter a first name",
+                    hintText: "first name".tr(),
                     hintStyle: TextStyle(color: Colors.white)),
-                validator: (value) =>
-                    value!.isEmpty ? "Enter first name" : null,
+                validator: (value) => value!.isEmpty ? "first name" : null,
               ),
               SizedBox(
                 height: 10,
@@ -107,9 +107,9 @@ class _UserFormScreenState extends State<UserFormScreen> {
                           color: const Color.fromARGB(255, 87, 86, 86)),
                       borderRadius: BorderRadius.circular(14),
                     ),
-                    hintText: "Enter a last name",
+                    hintText: "last name".tr(),
                     hintStyle: TextStyle(color: Colors.white, fontSize: 14)),
-                validator: (value) => value!.isEmpty ? "Enter last name" : null,
+                validator: (value) => value!.isEmpty ? "last name" : null,
               ),
               SizedBox(
                 height: 10,
@@ -130,18 +130,17 @@ class _UserFormScreenState extends State<UserFormScreen> {
                         color: const Color.fromARGB(255, 87, 86, 86)),
                     borderRadius: BorderRadius.circular(14),
                   ),
-                  hintText: " Enter a email",
+                  hintText: "email".tr(),
                   hintStyle: TextStyle(color: Colors.white),
                 ),
-                validator: (value) =>
-                    value!.contains("@") ? null : "Enter valid email",
+                validator: (value) => value!.contains("@") ? null : " email",
               ),
               SizedBox(height: 20),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
                 onPressed: _saveUser,
                 child: Text(
-                  widget.user == null ? "Add User" : "Update User",
+                  widget.user == null ? "Add User".tr() : "Update User",
                   style: TextStyle(color: Colors.white),
                 ),
               ),
