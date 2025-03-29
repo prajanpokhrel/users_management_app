@@ -24,8 +24,12 @@ class UserCards extends StatelessWidget {
             style: TextStyle(color: const Color.fromARGB(255, 202, 200, 200)),
           ),
           onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => UserProfile()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => UserProfile(
+                          user: user,
+                        )));
           },
         ),
       ]),
