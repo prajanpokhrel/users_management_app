@@ -44,4 +44,14 @@ class Notifier extends ChangeNotifier {
     _filteredUsers = _users;
     notifyListeners();
   }
+
+  //updated users
+  void updateUsers(int id, UserModel updatedUsers) {
+    int index = _users.indexWhere((user) => user.id == id);
+    if (index != -1) {
+      _users[index] = updatedUsers;
+      _filteredUsers = _users;
+      notifyListeners();
+    }
+  }
 }
