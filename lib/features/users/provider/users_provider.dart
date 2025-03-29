@@ -54,4 +54,11 @@ class Notifier extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  //delete the users
+  void deleteUser(int id) {
+    _users.removeWhere((user) => user.id == id);
+    _filteredUsers = _users;
+    notifyListeners();
+  }
 }
